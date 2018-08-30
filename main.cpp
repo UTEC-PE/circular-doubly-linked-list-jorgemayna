@@ -1,6 +1,6 @@
 #include <iostream>
-#include <random>
-#include <assert.h>
+/*#include <random>
+#include <assert.h>*/
 #include <string.h>
 
 #include "list.h"
@@ -15,7 +15,7 @@ using namespace std;
 
 #define POP_FRONT 2
 #define POP_BACK 3
-
+/*
 int generateRandomInt(int min, int max);
 void insertIntoList(List<int> &numbers);
 void removeFromList(List<int> &numbers);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         ++ite;
     }
     assert(test.get(position) == *ite && "Something is wrong with the get method or the iterator");
-    
+
     ite = test.begin();
     for (int i = 0; i < numberOfElements - 1; i++) {
         ++ite;
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
 int generateRandomInt(int min, int max) {
     mt19937 rng;
     rng.seed(random_device()());
-    uniform_int_distribution<mt19937::result_type> distribution(min, max); 
+    uniform_int_distribution<mt19937::result_type> distribution(min, max);
     return distribution(rng);
 }
 
@@ -92,7 +92,7 @@ void insertIntoList(List<int> &numbers) {
         case PUSH_FRONT: numbers.push_front(numberToInsert); break;
         case PUSH_BACK: numbers.push_back(numberToInsert); break;
     }
-} 
+}
 
 void removeFromList(List<int> &numbers) {
     const int action = generateRandomInt(2, 3);
@@ -100,4 +100,37 @@ void removeFromList(List<int> &numbers) {
         case POP_FRONT: numbers.pop_front(); break;
         case POP_BACK: numbers.pop_back(); break;
     }
-} 
+}
+*/
+int main()
+{
+    List<int>* nombre= new List<int>();
+    List<int>* nombre1= new List<int>();
+    nombre->push_back(4);
+    nombre->push_back(5);
+    nombre->push_back(6);
+    nombre->pop_front();
+
+    nombre1->push_front(1);
+    nombre1->push_front(2);
+    nombre1->push_front(3);
+    nombre1->pop_back();
+    nombre->concat(*nombre1);
+    Iterator<int> it = nombre->begin();
+    for(it;it!=nombre->end();++it)
+    {
+        cout <<*it<<endl;
+    }
+    cout <<*it<<endl;
+
+    cout <<nombre->size()<<endl;
+
+    nombre->clear();
+
+
+    cout <<nombre->size()<<endl;
+
+
+
+    return 0;
+}

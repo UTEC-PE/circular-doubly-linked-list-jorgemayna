@@ -11,6 +11,7 @@ template <typename T>
 class List {
     private:
         Node<T>* start;
+        int nodes;
 
     public:
         List();
@@ -29,7 +30,221 @@ class List {
         Iterator<T> begin();
         Iterator<T> end();
 
+
+
         ~List();
 };
+
+template<class T> List<T>::List()
+{
+
+    start=NULL;
+    nodes=0;
+
+}
+
+template<typename T> T List<T>::front()
+{
+
+    return(start->data);
+
+}
+
+template<typename T> T List<T>::back()
+{
+
+    return(start->prev->data);
+
+}
+
+template<typename T> void List<T>::push_front(T value)
+{
+    Node<T>* temp = new Node<T>;
+    temp->data=value;
+
+    if (start==NULL)
+    {
+
+        start=temp;
+        start->next=start;
+        start->prev=start;
+
+    }
+    temp->prev=start->prev;
+    temp->next=start;
+    start->prev=temp;
+    start=temp;
+    nodes++;
+    temp=NULL;
+    delete temp;
+
+
+
+}
+
+template<typename T> void List<T>::push_back(T value)
+{
+    //  INCOMPLETO
+    Node<T>* temp = new Node<T>;
+    temp->data=value;
+    temp->next=start;
+
+    nodes++;
+    if (start==NULL)
+    {
+
+        start=temp;
+        temp->prev=start;
+    }else{
+        start->prev->next=temp;
+        temp->prev=start->prev;
+        start->prev=temp;
+    }
+
+
+    temp=NULL;
+    delete temp;
+
+
+}
+template<typename T> void List<T>::pop_front()
+{
+    if(nodes!=1)
+    {
+        Node<T>* temp=start->next;
+        temp->prev=start->prev;
+        start->prev->next=temp;
+        start=NULL;
+        delete start;
+        start=temp;
+        temp=NULL;
+        delete temp;
+        nodes--;
+
+
+    }else{
+        start=NULL;
+
+        delete start;
+        nodes=0;
+
+    }
+}
+
+template<typename T> void List<T>::pop_back()
+{
+
+    if(nodes!=1)
+    {
+        Node<T>* temp=start->prev->prev;
+
+        temp->next=start;
+        start->prev=NULL;
+        delete start->prev;
+        start->prev=temp;
+
+        temp=NULL;
+        delete temp;
+        nodes--;
+
+
+    }else{
+        start=NULL;
+        delete start;
+        nodes=0;
+    }
+}
+
+template<typename T> void List<T>::concat(List<T> &other)
+{
+
+    if(!empty())
+    {
+        Node<T>* temp=start->prev;
+        start->prev->next=other.start;
+        other.start->prev->next=start;
+        start->prev=other.start->prev;
+        other.start->prev=temp;
+        temp=NULL;
+        delete temp;
+
+
+    }
+    else{
+        start=other.start;
+        start->prev=other.start->prev;
+    }
+    nodes=nodes+other.nodes;
+
+}
+
+template<typename T> int List<T>::size()
+{
+    return nodes;
+}
+
+template<typename T> bool List<T>::empty()
+{
+    bool a=true;
+    if(start==NULL)
+    {
+        return a;
+    }else{
+        return !a;
+    }
+
+}
+
+template<typename T> T List<T>::get(int position)
+{
+    Node<T>* temp=start;
+    T rpta;
+    for(int x=0;x!=position;x++)
+    {
+
+        rpta=temp->data;
+        temp=temp->next;
+    }
+    temp= NULL;
+    delete temp;
+    return rpta;
+
+}
+
+template<typename T> void List<T>::clear()
+{
+    if(!empty())
+    {
+        while(start!=start->prev)
+        {
+            pop_front();
+
+        }
+        nodes=0;
+        start=NULL;
+        delete start;
+
+    }
+}
+
+template<typename T> Iterator<T> List<T>::begin()
+{
+    Iterator<T> temp(start);
+
+
+    return temp;
+
+}
+
+template<typename T> Iterator<T> List<T>::end()
+{
+    Iterator<T> temp(start->prev);
+
+
+    return temp;
+
+}
+
+
 
 #endif
