@@ -245,6 +245,15 @@ template<typename T> Iterator<T> List<T>::end()
 
 }
 
+template<class T> List<T>::~List()
+{
+
+    clear();
+    this=NULL;
+    delete this;
+
+}
+
 
 
 #endif

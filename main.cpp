@@ -126,8 +126,9 @@ int main()
     cout <<nombre->size()<<endl;
 
     nombre->clear();
-
-
+    cout <<"--------------------"<<endl;
+    cout <<*it<<endl;
+    cout <<nombre->empty()<<endl;
     cout <<nombre->size()<<endl;
 
 
