@@ -76,7 +76,7 @@ template<typename T> void List<T>::push_front(T value)
     start=temp;
     nodes++;
     temp=NULL;
-    delete temp;
+
 
 
 
@@ -103,7 +103,7 @@ template<typename T> void List<T>::push_back(T value)
 
 
     temp=NULL;
-    delete temp;
+
 
 
 }
@@ -114,16 +114,15 @@ template<typename T> void List<T>::pop_front()
         Node<T>* temp=start->next;
         temp->prev=start->prev;
         start->prev->next=temp;
-        start=NULL;
         delete start;
         start=temp;
         temp=NULL;
-        delete temp;
+
         nodes--;
 
 
     }else{
-        start=NULL;
+
 
         delete start;
         nodes=0;
@@ -139,17 +138,17 @@ template<typename T> void List<T>::pop_back()
         Node<T>* temp=start->prev->prev;
 
         temp->next=start;
-        start->prev=NULL;
+
         delete start->prev;
         start->prev=temp;
 
         temp=NULL;
-        delete temp;
+
         nodes--;
 
 
     }else{
-        start=NULL;
+
         delete start;
         nodes=0;
     }
@@ -166,7 +165,7 @@ template<typename T> void List<T>::concat(List<T> &other)
         start->prev=other.start->prev;
         other.start->prev=temp;
         temp=NULL;
-        delete temp;
+
 
 
     }
@@ -206,7 +205,7 @@ template<typename T> T List<T>::get(int position)
         temp=temp->next;
     }
     temp= NULL;
-    delete temp;
+
     return rpta;
 
 }
@@ -220,9 +219,13 @@ template<typename T> void List<T>::clear()
             pop_front();
 
         }
-        nodes=0;
-        start=NULL;
+
+
         delete start;
+        start=NULL;
+        nodes--;
+
+
 
     }
 }
@@ -249,8 +252,7 @@ template<class T> List<T>::~List()
 {
 
     clear();
-    this=NULL;
-    delete this;
+
 
 }
 

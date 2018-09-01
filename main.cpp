@@ -1,8 +1,9 @@
 #include <iostream>
-/*#include <random>
-#include <assert.h>*/
-#include <string.h>
+#include <random>
+#include <assert.h>
 
+#include <string.h>
+#include <windows.h>
 #include "list.h"
 
 using namespace std;
@@ -15,7 +16,8 @@ using namespace std;
 
 #define POP_FRONT 2
 #define POP_BACK 3
-/*
+
+
 int generateRandomInt(int min, int max);
 void insertIntoList(List<int> &numbers);
 void removeFromList(List<int> &numbers);
@@ -73,7 +75,7 @@ int main(int argc, char *argv[]) {
     }
     cout << endl;
 
-    system("read");
+    system("pause");
     return EXIT_SUCCESS;
 }
 
@@ -101,37 +103,7 @@ void removeFromList(List<int> &numbers) {
         case POP_BACK: numbers.pop_back(); break;
     }
 }
-*/
-int main()
-{
-    List<int>* nombre= new List<int>();
-    List<int>* nombre1= new List<int>();
-    nombre->push_back(4);
-    nombre->push_back(5);
-    nombre->push_back(6);
-    nombre->pop_front();
-
-    nombre1->push_front(1);
-    nombre1->push_front(2);
-    nombre1->push_front(3);
-    nombre1->pop_back();
-    nombre->concat(*nombre1);
-    Iterator<int> it = nombre->begin();
-    for(it;it!=nombre->end();++it)
-    {
-        cout <<*it<<endl;
-    }
-    cout <<*it<<endl;
-
-    cout <<nombre->size()<<endl;
-
-    nombre->clear();
-    cout <<"--------------------"<<endl;
-    cout <<*it<<endl;
-    cout <<nombre->empty()<<endl;
-    cout <<nombre->size()<<endl;
 
 
 
-    return 0;
-}
+
