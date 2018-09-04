@@ -21,31 +21,38 @@ class Iterator {
 
 template<class T> Iterator<T>::Iterator()
 {
-
+    //contructor
     current=NULL;
-
 }
 template<class T> Iterator<T>::Iterator(Node<T>* node)
 {
+    //constructor 2 xd
     current=node;
 
 }
 template<typename T> Iterator<T> Iterator<T>::operator=(Iterator<T> node)
 {
+    //sobrecargar de igual
     Iterator<T> temp;
     temp.current=node.current;
-
     return temp;
 }
 template<typename T> bool Iterator<T>::operator!=(Iterator<T> node)
 {
+    //sobrecarga
+    
     if (current==node.current)
     {
         return false;
-
+        
+        
+        
     }
     else{
         return true;
+        
+        
+        
     }
 
 }
@@ -53,20 +60,24 @@ template<typename T> bool Iterator<T>::operator!=(Iterator<T> node)
 
 template<typename T> Iterator<T> Iterator<T>::operator++()
 {
+    //sobrecarga de sumador
     current=current->next;
+    
+    
     return *this;
-
 }
 template<typename T> Iterator<T> Iterator<T>::operator--()
 {
+    //sobrecargar de gg
     current=current->prev;
+    
+    
     return *this;
-
 }
 template<typename T> T Iterator<T>::operator*()
 {
+    //1+1=2
     return current->data;
-
 }
 
 #endif
