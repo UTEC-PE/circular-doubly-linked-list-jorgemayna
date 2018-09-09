@@ -34,14 +34,14 @@ template<typename T> Iterator<T> Iterator<T>::operator=(Iterator<T> node)
 {
     //sobrecargar de igual
     Iterator<T> temp;
-    temp.current=node.current;
+    temp.current=node.current; // Estás creando un nuevo iterador, está mal
     return temp;
 }
 template<typename T> bool Iterator<T>::operator!=(Iterator<T> node)
 {
     //sobrecarga
     
-    if (current==node.current)
+    if (current==node.current) // Podría ser return current != node.current;
     {
         return false;
         

@@ -46,14 +46,14 @@ template<class T> List<T>::List()
 template<typename T> T List<T>::front()
 {
 
-    return(start->data);
+    return(start->data); // Falta controlar el caso de lista vacía
 
 }
 
 template<typename T> T List<T>::back()
 {
 
-    return(start->prev->data);
+    return(start->prev->data); // Falta controlar el caso de lista vacía
 
 }
 
@@ -75,7 +75,7 @@ template<typename T> void List<T>::push_front(T value)
     start->prev=temp;
     start=temp;
     nodes++;
-    temp=NULL;
+    temp=NULL; // No es necesario igualar el temporal a NULL
 
 
 
@@ -102,7 +102,7 @@ template<typename T> void List<T>::push_back(T value)
     }
 
 
-    temp=NULL;
+    temp=NULL; // No es necesario igualar el temporal a NULL
 
 
 
@@ -116,7 +116,7 @@ template<typename T> void List<T>::pop_front()
         start->prev->next=temp;
         delete start;
         start=temp;
-        temp=NULL;
+        temp=NULL; // No es necesario
 
         nodes--;
 
@@ -124,7 +124,7 @@ template<typename T> void List<T>::pop_front()
     }else{
 
 
-        delete start;
+        delete start; // Debes igualar start a nullptr
         nodes=0;
 
     }
@@ -149,7 +149,7 @@ template<typename T> void List<T>::pop_back()
 
     }else{
 
-        delete start;
+        delete start; // Debes igualar start a nullptr
         nodes=0;
     }
 }
@@ -185,7 +185,7 @@ template<typename T> int List<T>::size()
 template<typename T> bool List<T>::empty()
 {
     bool a=true;
-    if(start==NULL)
+    if(start==NULL) // Podría ser return !start;
     {
         return a;
     }else{
@@ -198,10 +198,10 @@ template<typename T> T List<T>::get(int position)
 {
     Node<T>* temp=start;
     T rpta;
-    for(int x=0;x!=position;x++)
+    for(int x=0;x!=position;x++) // Podrías sacar el módulo, por qué iteras sobre la respuesta? De temp ya puedes sacarla
     {
 
-        rpta=temp->data;
+        rpta=temp->data; // No es necesario
         temp=temp->next;
     }
     temp= NULL;
